@@ -50,6 +50,7 @@ impl ConsoleIf for ConsoleIfImpl {
     /// Returns the IRQ number for the console, if applicable.
     #[cfg(feature = "irq")]
     fn irq_num() -> Option<usize> {
-        Some(crate::config::devices::UART_IRQ)
+        //Some(crate::config::devices::UART_IRQ)
+        None
     }
 }
