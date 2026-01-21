@@ -12,6 +12,11 @@ cargo +nightly add axplat axplat-riscv64-sg2002
 ```
 
 ## Usage
+### Startup on SG2002
+```
+make ARCH=riscv64 APP_FEATURES=sg2002 MYPLAT=axplat-riscv64-sg2002 LOG=debug BUS=mmio UIMAGE=y build
+
+```
 
 #### 1. Write your kernel code
 
