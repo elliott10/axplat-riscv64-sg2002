@@ -39,7 +39,9 @@ boot-stack-size = 0x40000                       # uint
 # MMIO ranges with format (`base_paddr`, `size`).
 mmio-ranges = [
     [0x0414_0000, 0x1000],          # UART0
+    [0x0431_0000, 0x1000],          # cv sdmmc
     [0x0502_6000, 0x1000],          # RTC
+    [0x0c10_0000, 0x2000],          # TPU
     [0x7000_0000, 0x0400_0000],     # PLIC
     [0x7400_0000, 0x1_0000],        # CLINT
 ]                                   # [(uint, uint)]
@@ -68,3 +70,5 @@ plic-paddr = 0x7000_0000            # uint
 # };
 uart-paddr = 0x0414_0000            # uint
 uart-irq = 0x2c                     # uint
+
+sdmmc-paddr = 0x0431_0000            # uint

@@ -8,14 +8,16 @@ static mut RTC_EPOCHOFFSET_NANOS: u64 = 0;
 
 pub(super) fn init_early() {
     #[cfg(feature = "rtc")]
-    use crate::config::{devices::RTC_PADDR, plat::PHYS_VIRT_OFFSET};
+    use crate::config::devices::RTC_PADDR;
 
     #[cfg(feature = "rtc")]
     if RTC_PADDR != 0 {
+    use axplat::mem::{pa, phys_to_virt};
+
         // Get the current time in seconds since the epoch (1970-01-01) from the SG2002 RTC.
         // Subtract the timer ticks to get the actual time when ArceOS was booted.
         let epoch_time_nanos =
-            read_sg2002_rtc_seconds(RTC_PADDR + PHYS_VIRT_OFFSET) * 1_000_000_000;
+            read_sg2002_rtc_seconds(phys_to_virt(pa!(RTC_PADDR)).as_usize()) * 1_000_000_000;
 
         unsafe {
             RTC_EPOCHOFFSET_NANOS =
@@ -24,12 +26,6 @@ pub(super) fn init_early() {
     }
 }
 
-pub(super) fn init_percpu() {
-    #[cfg(feature = "irq")]
-    sbi_rt::set_timer(0);
-}
-
-struct TimeIfImpl;
 
 #[cfg(feature = "rtc")]
 fn read_sg2002_rtc_seconds(base_vaddr: usize) -> u64 {
@@ -52,6 +48,13 @@ fn read_sg2002_rtc_seconds(base_vaddr: usize) -> u64 {
 
     sec as u64
 }
+
+pub(super) fn init_percpu() {
+    #[cfg(feature = "irq")]
+    sbi_rt::set_timer(0);
+}
+
+struct TimeIfImpl;
 
 #[impl_plat_interface]
 impl TimeIf for TimeIfImpl {

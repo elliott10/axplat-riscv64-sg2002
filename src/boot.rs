@@ -11,9 +11,9 @@ static mut BOOT_PT_SV39: Aligned4K<[u64; 512]> = Aligned4K::new([0; 512]);
 unsafe fn init_boot_page_table() {
     unsafe {
         const PTE_FLAGS: u64 = 0xef; // VRWX_GAD
+        const PTE_SO: u64 = 1u64 << 63;
         const PTE_CACHE: u64 = 1u64 << 62;
         const PTE_BUF: u64 = 1u64 << 61;
-        const PTE_SO: u64 = 1u64 << 63;
         const PTE_SHARE: u64 = 1u64 << 60;
 
         const KERNEL_FLAGS: u64 = PTE_FLAGS | PTE_CACHE | PTE_BUF | PTE_SHARE;
