@@ -11,7 +11,7 @@ pub(crate) fn init_early() {
     UART.init_once({
         let mut uart = DW8250::new(UART_PADDR + PHYS_VIRT_OFFSET);
         // SG2002 uses dw-apb-uart with 25MHz clock, 115200 baud.
-        uart.dw8250_init();
+        uart.ns16550_init(25_000_000, 115200);
         SpinNoIrq::new(uart)
     });
 }

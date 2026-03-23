@@ -56,6 +56,14 @@ unsafe extern "C" fn _start() -> ! {
         li      t0, {boot_stack_size}
         add     sp, sp, t0              // setup boot stack
 
+        # Print: <id>\n
+        li a7, 1
+        addi a0, a0, 48
+        ecall
+        li a7, 1
+        li a0, 10
+        ecall
+
         call    {init_boot_page_table}
         call    {init_mmu}              // setup boot page table and enabel MMU
 
