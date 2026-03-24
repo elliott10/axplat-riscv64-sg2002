@@ -5,9 +5,9 @@
 ## 1. 串口连接
 
 请将 SG2002 开发板 UART0 串口连接到以下引脚：
-- `A17`（RX）
-- `A16`（TX）
-- `GND`
+- `A17`（RX）接收
+- `A16`（TX）发送
+- `GND`     接地
 
 串口波特率参数：`115200 8N1`。
 
@@ -91,7 +91,7 @@ U-Boot命令行如下图所示：
 
 启动成功后，StarryOS 会挂载 rootfs 并进入 shell。
 
-![U-Boot引导示例](doc/uboot-starry.png)
+![U-Boot引导示例](doc/starryos-rootfs.png)
 
 ## 5. 常见问题
 
