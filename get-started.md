@@ -57,6 +57,7 @@ sudo fdisk /dev/sdX
 - `w`：保存并退出
 
 最终分区表示例如下图：
+
 ![fdisk分区](doc/fdisk-parts.png)
 
 ### 3.3 格式化 rootfs 分区为 ext4
