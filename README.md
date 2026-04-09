@@ -1,8 +1,5 @@
 # axplat-riscv64-sg2002
 
-[![Crates.io](https://img.shields.io/crates/v/axplat-riscv64-qemu-virt)](https://crates.io/crates/axplat-riscv64-qemu-virt)
-[![CI](https://github.com/arceos-org/axplat_crates/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/arceos-org/axplat_crates/actions/workflows/ci.yml)
-
 Implementation of [axplat](https://github.com/arceos-org/axplat_crates/tree/main/axplat) hardware abstraction layer for SG2002 board.
 
 ## Install
@@ -12,12 +9,18 @@ cargo +nightly add axplat axplat-riscv64-sg2002
 ```
 
 ## Usage
+### How to build
+```
+cargo build --target riscv64gc-unknown-none-elf
+```
+
 ### Startup on SG2002
 ```
 make ARCH=riscv64 APP_FEATURES=sg2002 MYPLAT=axplat-riscv64-sg2002 LOG=debug BUS=mmio UIMAGE=y build
 
 ```
 
+----
 #### 1. Write your kernel code
 
 ```rust
@@ -45,40 +48,7 @@ extern crate axplat_riscv64_sg2002;
 
 #### 3. Use a linker script like the following
 
-```text
-ENTRY(_start)
-SECTIONS
-{
-    . = 0xffffffc080200000;
-
-    .text : ALIGN(4K) {
-        *(.text.boot)               /* This section is required */
-        *(.text .text.*)
-    }
-
-    .rodata : ALIGN(4K) {
-        *(.rodata .rodata.*)
-    }
-
-    .data : ALIGN(4K) {
-        *(.data .data.*)
-    }
-
-    .bss : ALIGN(4K) {
-        *(.bss.stack)               /* This section is required */
-        . = ALIGN(4K);
-        *(.bss .bss.*)
-        *(COMMON)
-    }
-
-    /DISCARD/ : {
-        *(.comment)
-    }
-}
-```
-
 Some sections are required to be defined in the linker script, listed as below:
 - `.text.boot`: Kernel boot code.
 - `.bss.stack`: Stack for kernel booting.
 
-[hello-kernel](https://github.com/arceos-org/axplat_crates/tree/main/examples/hello-kernel) is a complete example of a minimal kernel implemented using [axplat](https://github.com/arceos-org/axplat_crates/tree/main/axplat) and related platform packages.

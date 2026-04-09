@@ -1,5 +1,5 @@
 use axplat::console::ConsoleIf;
-use dw_apb_uart::DW8250;
+use dw_uart_rs::DW8250;
 use kspin::SpinNoIrq;
 use lazyinit::LazyInit;
 
