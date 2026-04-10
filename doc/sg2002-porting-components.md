@@ -35,6 +35,9 @@ StaryOS所依赖的组件，所作的修改概述：
 
 它可以作为 SG2002 板子能否正确启动和完成基础初始化提供必要的基础支持。
 
+sg2002硬件平台支持包发布于crates.io： https://crates.io/crates/axplat-riscv64-sg2002
+串口驱动：https://crates.io/crates/dw_uart_rs
+
 ## 3. axfeat
 
 `axfeat` 在这次适配中的作用主要是做平台 feature 的配置透传。 其修改重点包括：
@@ -52,6 +55,8 @@ StaryOS所依赖的组件，所作的修改概述：
 
 这部分修改解决了 GPT 无法在 SG2002 上直接用于引导的问题，使系统可以识别 SD 卡驱动，并从 MBR 分区的 SD 卡上挂载 rootfs。
 
+代码的修改及PR的提交链接：https://github.com/arceos-org/arceos/pull/364
+
 ## 5. axdriver_block
 
 `axdriver_block` 负责补齐 CVSD 的底层块设备实现。其重点包括：
@@ -61,6 +66,8 @@ StaryOS所依赖的组件，所作的修改概述：
 - 提供标准块读写接口，并将底层 BSP 错误参数转换为 OS 统一驱动错误参数。
 
 它与 `axdriver` 的 MBR 分区支持组合后，形成了“SD 卡控制器 -> MBR 分区 -> rootfs”的完整存储路径。
+
+代码的修改及PR的提交链接：https://github.com/arceos-org/axdriver_crates/pull/27
 
 ## 6. page_table_entry
 
@@ -72,6 +79,8 @@ StaryOS所依赖的组件，所作的修改概述：
 
 这部分修改解决的是页表能有效映射，设置的属性符合 C9xx CPU的硬件拓展属性。
 
+代码的修改及PR的提交链接：https://github.com/arceos-org/page_table_multiarch/pull/46
+
 ## 7. axcpu
 
 `axcpu` 的修改主要是补齐 SG2002/C9xx 相关 CPU 功能。其重点包括：
@@ -79,11 +88,18 @@ StaryOS所依赖的组件，所作的修改概述：
 - 新增 `sg2002` feature，并与页表属性扩展联动。
 - 增加 `sstatus` 读写封装。
 - 在用户态上下文初始化时设置 `sstatus.VS`，为向量指令支持提供基础。
-- 扩展 `flush_icache()`，在通用 `fence.i` 之外增加 T-Head C9xx 专用 cache 同步指令。
+- 扩展 `flush_icache()`，在通用 `fence.i` 之外增加 T-Head C9xx 专用 cache 同步指令。实现在进入用户空间前刷新所有指令cache
 
 这部分修改保证了 CPU 缓存和状态控制能够按 SG2002 的实际硬件平台工作。
 
-## 8. 总结
+代码的修改及PR的提交链接：https://github.com/arceos-org/axcpu/pull/36
+
+## 8. tpu
+
+sg2002 tpu加速驱动库
+发布于crates.io： https://crates.io/crates/tpu-sg2002
+
+## 9. 总结
 
 SG2002 适配设计到系统的多个组件的修改，需要协同地修改包括 内核集成层、跨平台框架层、驱动层、页表层、CPU 层等：
 
