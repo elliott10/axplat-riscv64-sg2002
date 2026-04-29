@@ -11,6 +11,8 @@ cargo +nightly add axplat axplat-riscv64-sg2002
 ## Usage
 ### How to build
 ```
+git clone https://github.com/elliott10/axplat-riscv64-sg2002 -b sg2002-apache
+cd axplat-riscv64-sg2002
 cargo build --target riscv64gc-unknown-none-elf
 ```
 
