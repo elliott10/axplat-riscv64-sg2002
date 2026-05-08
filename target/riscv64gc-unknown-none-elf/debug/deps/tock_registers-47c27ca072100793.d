@@ -1,0 +1,10 @@
+/home/runner/work/axplat-riscv64-sg2002/axplat-riscv64-sg2002/target/riscv64gc-unknown-none-elf/debug/deps/tock_registers-47c27ca072100793.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/fields.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/interfaces.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/macros.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/registers.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/local_register.rs
+
+/home/runner/work/axplat-riscv64-sg2002/axplat-riscv64-sg2002/target/riscv64gc-unknown-none-elf/debug/deps/libtock_registers-47c27ca072100793.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/fields.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/interfaces.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/macros.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/registers.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/local_register.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/fields.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/interfaces.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/macros.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/registers.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tock-registers-0.8.1/src/local_register.rs:
